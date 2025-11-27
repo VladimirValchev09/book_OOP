@@ -1,0 +1,40 @@
+package ZAD_BOOK;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class test_file {
+	static book[] books;
+	static int n;
+
+	static void fill(String book_text_file) {
+		try {
+			File file = new File(book_text_file);
+			Scanner sc = new Scanner(file);
+			String cnt_text = sc.nextLine();
+			n = Integer.parseInt(cnt_text);
+			books = new book[n];
+			for (int i = 0; i < n; i++) {
+				String[] line=sc.nextLine().split(",");
+				String Zaglavie = line[0];
+				String Avtor = line[1];
+				int stranici = Integer.parseInt(line[2]);
+				double cena = Double.parseDouble(line[3]);
+				book book = new book(Zaglavie, Avtor, stranici, cena);
+				books[i] = book;
+			}
+		} catch (Exception e) {
+			System.out.println("File not found!");
+		}
+	}
+	static void show() {
+		for(book b:books) {
+			System.out.println(b);
+		}
+	}
+	public static void main(String[] args) throws FileNotFoundException {
+		fill("Books.txt");
+		show();
+	}
+}
