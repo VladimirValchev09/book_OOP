@@ -1,0 +1,61 @@
+package ZAD_BOOK;
+
+import java.util.Scanner;
+
+public class test_book {
+
+	static book[] books;
+	
+	static int n;
+static	Scanner sc=new Scanner(System.in);
+	static void fill() {
+		for(int i=0; i<n; i++) {
+			sc.nextLine();
+			String title=sc.nextLine();
+			String author=sc.nextLine();
+			int pages=sc.nextInt();
+			double price=sc.nextDouble();
+			book b=new book(title, author, pages, price);
+			books[i]=b;
+		}
+	}
+	static void show() {
+		for(book b:books) {
+			System.out.println(b);
+		}
+	}
+	static void Avtor(String Avtor) {
+		for(book b:books) {
+			if(Avtor.equals(b.getAvtor()))
+				System.out.println(b);
+		}
+	}
+	static double avgPrices() {
+		double avg=0;
+		for(book b:books) {
+			avg+=b.getCena();
+			if(n==0)return 0;
+		}
+		return avg/(double)n;
+	}
+	public static void main(String[] args) {
+		
+		n=sc.nextInt();
+		books=new book[n];
+		fill();
+		show();
+		sc.nextLine();
+		String Avt=sc.nextLine();
+		Avtor(Avt);
+		System.out.println(avgPrices());
+		
+
+		
+		
+		
+		
+
+
+	}
+
+}
